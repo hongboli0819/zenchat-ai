@@ -1,7 +1,9 @@
+'use client'
+
 import React from "react";
 import { SparklesIcon } from "@/shared/ui/Icon";
 
-export const PlaygroundPage: React.FC = () => {
+export default function PlaygroundPage() {
   return (
     <div className="flex-1 flex flex-col items-center justify-center p-8">
       <div className="relative mb-8">

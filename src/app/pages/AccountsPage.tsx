@@ -1,14 +1,16 @@
+'use client'
+
 import React, { useState, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { SparklesIcon } from "@/shared/ui/Icon";
 import { useAccountsWithStats, useOverviewStats } from "@/shared/lib/queries";
 
 interface AccountsPageProps {
-  onBack: () => void;
+  onBack?: () => void;
 }
 
-export const AccountsPage: React.FC<AccountsPageProps> = ({ onBack }) => {
-  const navigate = useNavigate();
+export default function AccountsPage({ onBack }: AccountsPageProps) {
+  const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState<"interactions" | "posts" | "likes">("interactions");
@@ -171,7 +173,7 @@ export const AccountsPage: React.FC<AccountsPageProps> = ({ onBack }) => {
           {data.map((account, index) => (
             <div
               key={account.id}
-              onClick={() => navigate(`/accounts/${account.id}`)}
+              onClick={() => router.push(`/accounts/${account.id}`)}
               className="glass rounded-xl p-4 hover:bg-card/60 transition-all group cursor-pointer hover:shadow-lg hover:shadow-primary/10"
             >
                 {/* 排名 */}

@@ -1,5 +1,7 @@
+'use client'
+
 import React, { useState, useMemo, useCallback } from 'react';
-import { useNavigate, useOutletContext } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { useDashboardPosts } from '@/shared/lib/queries';
 import {
   TimeRange,
@@ -15,7 +17,7 @@ import { InteractionPie } from './dashboard/InteractionPie';
 import { RankingTabs } from './dashboard/RankingTabs';
 import { ContributionBar } from './dashboard/ContributionBar';
 import { TimeHeatmap } from './dashboard/TimeHeatmap';
-import type { XHSPostForAnalysis } from '@/app/AppShell';
+import type { XHSPostForAnalysis } from '@/components/AppShell';
 import {
   startOfWeek,
   startOfMonth,

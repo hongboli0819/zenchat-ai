@@ -1,3 +1,5 @@
+'use client'
+
 /**
  * MaterialLibraryPage - 素材库页面
  * 
