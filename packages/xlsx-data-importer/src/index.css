@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+/* =========================================
+ * HSL 颜色变量定义
+ * 符合 Lovable 平台规范
+ * ========================================= */
+
+:root {
+  /* 背景和前景 */
+  --background: 0 0% 100%;
+  --foreground: 222 84% 5%;
+
+  /* 主色调 - Tiffany 蓝 */
+  --primary: 174 100% 40%;
+  --primary-foreground: 0 0% 100%;
+
+  /* 次要色 */
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222 47% 11%;
+
+  /* 静音色 */
+  --muted: 210 40% 96%;
+  --muted-foreground: 215 15% 35%;
+
+  /* 强调色 */
+  --accent: 210 40% 96%;
+  --accent-foreground: 222 47% 11%;
+
+  /* 边框和输入框 */
+  --border: 214 32% 91%;
+  --input: 214 32% 91%;
+  --ring: 174 100% 40%;
+
+  /* 卡片 */
+  --card: 0 0% 100%;
+  --card-foreground: 222 84% 5%;
+
+  /* 弹出层 */
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 84% 5%;
+
+  /* 破坏性操作 */
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+
+  /* 圆角 */
+  --radius: 0.5rem;
+}
+
+/* 暗色模式 */
+.dark {
+  --background: 222 84% 5%;
+  --foreground: 210 40% 98%;
+
+  --primary: 174 100% 40%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 217 33% 17%;
+  --secondary-foreground: 210 40% 98%;
+
+  --muted: 217 33% 17%;
+  --muted-foreground: 215 20% 65%;
+
+  --accent: 217 33% 17%;
+  --accent-foreground: 210 40% 98%;
+
+  --border: 217 33% 17%;
+  --input: 217 33% 17%;
+  --ring: 174 100% 40%;
+
+  --card: 222 84% 8%;
+  --card-foreground: 210 40% 98%;
+
+  --popover: 222 84% 8%;
+  --popover-foreground: 210 40% 98%;
+
+  --destructive: 0 62% 50%;
+  --destructive-foreground: 0 0% 100%;
+}
+
+/* 基础样式 */
+body {
+  @apply bg-background text-foreground;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* 自定义滚动条 */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}

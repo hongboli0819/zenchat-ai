@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>小红书正文模版</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      background: #000;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    /* ========== 小红书正文容器 ========== */
+    .xhs-post {
+      width: 100%;
+      max-width: 420px;
+      background: #fff;
+      border-radius: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* ========== 顶部导航栏 ========== */
+    .xhs-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .xhs-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .xhs-back-btn {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+      cursor: pointer;
+    }
+
+    .xhs-user-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .xhs-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #f0f0f0;
+    }
+
+    .xhs-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .xhs-username {
+      font-size: 15px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .xhs-header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .xhs-follow-btn {
+      padding: 6px 16px;
+      background: transparent;
+      border: 1.5px solid #ff2442;
+      border-radius: 20px;
+      color: #ff2442;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .xhs-follow-btn:hover {
+      background: #ff2442;
+      color: #fff;
+    }
+
+    .xhs-share-btn {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+      cursor: pointer;
+    }
+
+    /* ========== 图片轮播区域 ========== */
+    .xhs-carousel {
+      position: relative;
+      width: 100%;
+      background: #f5f5f5;
+      cursor: pointer;
+    }
+
+    .xhs-carousel-inner {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .xhs-carousel-track {
+      display: flex;
+      transition: transform 0.3s ease;
+      align-items: flex-start; /* 图片顶部对齐，高度自适应 */
+    }
+
+    .xhs-carousel-slide {
+      min-width: 100%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .xhs-carousel-slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+      /* 图片保持原始比例，宽度100%自适应 */
+    }
+
+    /* 图片计数器 */
+    .xhs-carousel-counter {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 500;
+      z-index: 10;
+    }
+
+    /* 点击区域 */
+    .xhs-carousel-prev,
+    .xhs-carousel-next {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 30%;
+      z-index: 5;
+      cursor: pointer;
+    }
+
+    .xhs-carousel-prev {
+      left: 0;
+    }
+
+    .xhs-carousel-next {
+      right: 0;
+    }
+
+    /* 指示点 */
+    .xhs-carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px 0;
+      background: #fff;
+    }
+
+    .xhs-carousel-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #ddd;
+      transition: all 0.2s;
+    }
+
+    .xhs-carousel-dot.active {
+      background: #ff2442;
+    }
+
+    /* ========== 内容区域 ========== */
+    .xhs-content {
+      padding: 16px;
+      background: #fff;
+    }
+
+    .xhs-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #222;
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+
+    .xhs-description {
+      font-size: 15px;
+      color: #333;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    /* ========== 编辑面板 ========== */
+    .edit-panel {
+      width: 100%;
+      max-width: 420px;
+      margin-top: 20px;
+      padding: 20px;
+      background: #1a1a1a;
+      border-radius: 12px;
+    }
+
+    .edit-panel h3 {
+      font-size: 14px;
+      color: #fff;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #333;
+    }
+
+    .edit-panel label {
+      display: block;
+      font-size: 12px;
+      color: #aaa;
+      margin-bottom: 6px;
+    }
+
+    .edit-panel input,
+    .edit-panel textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #333;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-bottom: 16px;
+      background: #2a2a2a;
+      color: #fff;
+      transition: border-color 0.2s;
+    }
+
+    .edit-panel input:focus,
+    .edit-panel textarea:focus {
+      outline: none;
+      border-color: #ff2442;
+    }
+
+    .edit-panel textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .edit-panel .image-list {
+      margin-bottom: 16px;
+    }
+
+    .edit-panel .image-item {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .edit-panel .image-item input {
+      margin-bottom: 0;
+      flex: 1;
+    }
+
+    .edit-panel .btn {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .edit-panel .btn:hover {
+      opacity: 0.8;
+    }
+
+    .edit-panel .btn-add {
+      background: #ff2442;
+      color: #fff;
+    }
+
+    .edit-panel .btn-remove {
+      background: #444;
+      color: #fff;
+      padding: 8px 12px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 0;
+      }
+      .edit-panel {
+        border-radius: 0;
+        margin-top: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- ========== 小红书正文 ========== -->
+  <div class="xhs-post" id="post">
+    <!-- 顶部导航 -->
+    <div class="xhs-header">
+      <div class="xhs-header-left">
+        <div class="xhs-back-btn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </div>
+        <div class="xhs-user-info">
+          <div class="xhs-avatar">
+            <img id="avatarImage" src="https://picsum.photos/100/100?random=1" alt="头像">
+          </div>
+          <span class="xhs-username" id="username">CC沪相寓</span>
+        </div>
+      </div>
+      <div class="xhs-header-right">
+        <button class="xhs-follow-btn">关注</button>
+        <div class="xhs-share-btn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 图片轮播 -->
+    <div class="xhs-carousel" id="carousel">
+      <div class="xhs-carousel-inner">
+        <div class="xhs-carousel-track" id="carouselTrack">
+          <!-- 图片会通过 JS 动态添加 -->
+        </div>
+      </div>
+      <div class="xhs-carousel-counter" id="counter">1/6</div>
+      <div class="xhs-carousel-prev" id="prevArea"></div>
+      <div class="xhs-carousel-next" id="nextArea"></div>
+    </div>
+
+    <!-- 指示点 -->
+    <div class="xhs-carousel-dots" id="dots"></div>
+
+    <!-- 内容区域 -->
+    <div class="xhs-content">
+      <h1 class="xhs-title" id="postTitle">上海转租（燃气小户型）一房一厅 2500!</h1>
+      <div class="xhs-description" id="postDescription">1.中介勿扰谢谢哈，不需要你们代理，自家房子出租，没有中介费，自己的人打理，安全性非常好。
+
+2.可以短租（3个月），二个月到一年都可以，押一付一，押金可退。
+
+3.房间配置：空调、冰箱、洗衣机、热水器、床、衣柜、书桌、椅子。
+
+4.位置：上海市静安区，靠近地铁站，交通便利，周边配套齐全。
+
+5.价格：2500/月，水电费自理，物业费已包含。
+
+6.入住时间：随时可入住，欢迎看房！
+
+联系方式：私信我～</div>
+    </div>
+  </div>
+
+  <!-- ========== 编辑面板 ========== -->
+  <div class="edit-panel">
+    <h3>🎨 快速编辑（实时预览）</h3>
+    
+    <label>头像 URL</label>
+    <input type="text" id="inputAvatar" placeholder="输入头像链接" value="https://picsum.photos/100/100?random=1">
+    
+    <label>用户昵称</label>
+    <input type="text" id="inputUsername" placeholder="输入昵称" value="CC沪相寓">
+    
+    <label>图片列表（点击图片左右区域切换）</label>
+    <div class="image-list" id="imageList">
+      <!-- 图片输入项会通过 JS 动态添加 -->
+    </div>
+    <button class="btn btn-add" id="addImageBtn">+ 添加图片</button>
+    
+    <label style="margin-top: 16px;">标题</label>
+    <input type="text" id="inputTitle" placeholder="输入标题" value="上海转租（燃气小户型）一房一厅 2500!">
+    
+    <label>正文内容</label>
+    <textarea id="inputDescription" placeholder="输入正文内容">1.中介勿扰谢谢哈，不需要你们代理，自家房子出租，没有中介费，自己的人打理，安全性非常好。
+
+2.可以短租（3个月），二个月到一年都可以，押一付一，押金可退。
+
+3.房间配置：空调、冰箱、洗衣机、热水器、床、衣柜、书桌、椅子。
+
+4.位置：上海市静安区，靠近地铁站，交通便利，周边配套齐全。
+
+5.价格：2500/月，水电费自理，物业费已包含。
+
+6.入住时间：随时可入住，欢迎看房！
+
+联系方式：私信我～</textarea>
+  </div>
+</div>
+
+<script>
+  // ========== 状态管理 ==========
+  let images = [
+    'https://picsum.photos/800/1200?random=1',
+    'https://picsum.photos/800/1200?random=2',
+    'https://picsum.photos/800/1200?random=3',
+    'https://picsum.photos/800/1200?random=4',
+    'https://picsum.photos/800/1200?random=5',
+    'https://picsum.photos/800/1200?random=6',
+  ];
+  let currentIndex = 0;
+
+  // ========== DOM 元素 ==========
+  const carouselTrack = document.getElementById('carouselTrack');
+  const counter = document.getElementById('counter');
+  const dots = document.getElementById('dots');
+  const prevArea = document.getElementById('prevArea');
+  const nextArea = document.getElementById('nextArea');
+  const imageList = document.getElementById('imageList');
+
+  // ========== 渲染轮播图 ==========
+  function renderCarousel() {
+    // 渲染图片
+    carouselTrack.innerHTML = images.map((src, index) => `
+      <div class="xhs-carousel-slide">
+        <img src="${src}" alt="图片${index + 1}">
+      </div>
+    `).join('');
+
+    // 渲染指示点
+    dots.innerHTML = images.map((_, index) => `
+      <div class="xhs-carousel-dot ${index === currentIndex ? 'active' : ''}" data-index="${index}"></div>
+    `).join('');
+
+    // 更新计数器
+    updateCounter();
+
+    // 绑定指示点点击事件
+    dots.querySelectorAll('.xhs-carousel-dot').forEach(dot => {
+      dot.addEventListener('click', (e) => {
+        goToSlide(parseInt(e.target.dataset.index));
+      });
+    });
+  }
+
+  // ========== 切换到指定图片 ==========
+  function goToSlide(index) {
+    if (index < 0) index = 0;
+    if (index >= images.length) index = images.length - 1;
+    currentIndex = index;
+    carouselTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+    updateCounter();
+    updateDots();
+  }
+
+  function updateCounter() {
+    counter.textContent = `${currentIndex + 1}/${images.length}`;
+  }
+
+  function updateDots() {
+    dots.querySelectorAll('.xhs-carousel-dot').forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentIndex);
+    });
+  }
+
+  // ========== 上一张/下一张 ==========
+  prevArea.addEventListener('click', () => {
+    if (currentIndex > 0) {
+      goToSlide(currentIndex - 1);
+    }
+  });
+
+  nextArea.addEventListener('click', () => {
+    if (currentIndex < images.length - 1) {
+      goToSlide(currentIndex + 1);
+    }
+  });
+
+  // ========== 渲染图片输入列表 ==========
+  function renderImageInputs() {
+    imageList.innerHTML = images.map((src, index) => `
+      <div class="image-item">
+        <input type="text" value="${src}" data-index="${index}" placeholder="图片 ${index + 1} URL">
+        <button class="btn btn-remove" data-index="${index}">✕</button>
+      </div>
+    `).join('');
+
+    // 绑定输入事件
+    imageList.querySelectorAll('input').forEach(input => {
+      input.addEventListener('input', (e) => {
+        const index = parseInt(e.target.dataset.index);
+        images[index] = e.target.value;
+        renderCarousel();
+      });
+    });
+
+    // 绑定删除事件
+    imageList.querySelectorAll('.btn-remove').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const index = parseInt(e.target.dataset.index);
+        if (images.length > 1) {
+          images.splice(index, 1);
+          if (currentIndex >= images.length) {
+            currentIndex = images.length - 1;
+          }
+          renderImageInputs();
+          renderCarousel();
+        }
+      });
+    });
+  }
+
+  // ========== 添加图片 ==========
+  document.getElementById('addImageBtn').addEventListener('click', () => {
+    const newIndex = images.length + 1;
+    images.push(`https://picsum.photos/800/1200?random=${Date.now()}`);
+    renderImageInputs();
+    renderCarousel();
+  });
+
+  // ========== 其他输入事件 ==========
+  document.getElementById('inputAvatar').addEventListener('input', (e) => {
+    document.getElementById('avatarImage').src = e.target.value;
+  });
+
+  document.getElementById('inputUsername').addEventListener('input', (e) => {
+    document.getElementById('username').textContent = e.target.value;
+  });
+
+  document.getElementById('inputTitle').addEventListener('input', (e) => {
+    document.getElementById('postTitle').textContent = e.target.value;
+  });
+
+  document.getElementById('inputDescription').addEventListener('input', (e) => {
+    document.getElementById('postDescription').textContent = e.target.value;
+  });
+
+  // ========== 初始化 ==========
+  renderCarousel();
+  renderImageInputs();
+</script>
+
+</body>
+</html>
+

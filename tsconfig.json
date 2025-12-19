@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Path Alias */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@org/zip-folder-extractor": ["packages/zip-folder-extractor/src/core/index.ts"],
+      "@internal/xlsx-data-importer": ["packages/xlsx-data-importer/src/core/index.ts"],
+      "@muse/image-compressor": ["packages/image-compressor/src/core/index.ts"],
+      "@tiffany/landing": ["packages/tiffany-landing/src/core/index.ts"]
+    }
+  },
+  "include": ["src", "packages/*/src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
