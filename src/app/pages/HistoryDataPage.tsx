@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useMemo } from "react";
 import { SparklesIcon } from "@/shared/ui/Icon";
 import { usePosts } from "@/shared/lib/queries";
@@ -7,7 +9,7 @@ interface HistoryDataPageProps {
   onBack: () => void;
 }
 
-export const HistoryDataPage: React.FC<HistoryDataPageProps> = ({ onBack }) => {
+export default function HistoryDataPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [noteTypeFilter, setNoteTypeFilter] = useState<string>("all");

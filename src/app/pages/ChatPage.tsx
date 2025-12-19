@@ -1,20 +1,22 @@
+'use client'
+
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import { useOutletContext, useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { ChatMessage } from "@/shared/ui/ChatMessage";
 import { SendIcon, SparklesIcon, PanelLeftIcon } from "@/shared/ui/Icon";
 import { Message, Role, ChatSession } from "@/core/types/io";
-import { runChat } from "@/core/pipelines/runChat";
+import { sendChatMessage } from "@/actions/chat";
 import { menuItems } from "@/shared/ui/Sidebar";
-import { HistoryDataPage } from "./HistoryDataPage";
-import { AccountsPage } from "./AccountsPage";
-import { MaterialLibraryPage } from "./MaterialLibraryPage";
-import { DashboardPage } from "./DashboardPage";
-import { ContentAnalysisPage } from "./ContentAnalysisPage";
-import { ContentAnalysisDetailPage } from "./ContentAnalysisDetailPage";
-import { StrategyInsightsPage } from "./StrategyInsightsPage";
-import { RulesManagementPage } from "./RulesManagementPage";
+import HistoryDataPage from "./HistoryDataPage";
+import AccountsPage from "./AccountsPage";
+import MaterialLibraryPage from "./MaterialLibraryPage";
+import DashboardPage from "./DashboardPage";
+import ContentAnalysisPage from "./ContentAnalysisPage";
+import ContentAnalysisDetailPage from "./ContentAnalysisDetailPage";
+import StrategyInsightsPage from "./StrategyInsightsPage";
+import RulesManagementPage from "./RulesManagementPage";
 
-import type { XHSPostForAnalysis } from "@/app/AppShell";
+import type { XHSPostForAnalysis } from "@/components/AppShell";
 
 interface ChatContextType {
   sidebarOpen: boolean;
@@ -31,23 +33,14 @@ interface ChatContextType {
   setAnalysisBackPath: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-export const ChatPage: React.FC = () => {
-  const {
-    sidebarOpen,
-    setSidebarOpen,
-    chatSessions,
-    setChatSessions,
-    currentSessionId,
-    setCurrentSessionId,
-    activeModule,
-    setActiveModule,
-    selectedPostForAnalysis,
-    setSelectedPostForAnalysis,
-    analysisBackPath,
-    setAnalysisBackPath,
-  } = useOutletContext<ChatContextType>();
-
-  const navigate = useNavigate();
+export default function ChatPage() {
+  const router = useRouter();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [chatSessions, setChatSessions] = useState<ChatSession[]>([]);
+  const [currentSessionId, setCurrentSessionId] = useState<string | null>(null);
+  const [activeModule, setActiveModule] = useState<string | null>(null);
+  const [selectedPostForAnalysis, setSelectedPostForAnalysis] = useState<XHSPostForAnalysis | null>(null);
+  const [analysisBackPath, setAnalysisBackPath] = useState<string | null>(null);
 
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");

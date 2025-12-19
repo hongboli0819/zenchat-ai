@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useEffect } from "react";
 import { usePostImages, type XHSPost, type PostImage } from "@/shared/lib/queries";
 import { LazyImage, preloadImages, preloadImage } from "@/shared/ui/LazyImage";
@@ -384,7 +386,7 @@ const ImageCarousel: React.FC<{ images: PostImage[]; className?: string; loading
 
 // ============ 主页面组件 ============
 
-export const ContentAnalysisDetailPage: React.FC<ContentAnalysisDetailPageProps> = ({ post, onBack }) => {
+export default function ContentAnalysisDetailPage() {
   // 图片数据单独加载，不阻塞页面渲染
   const { data: images = [], isLoading: imagesLoading } = usePostImages(post.id);
   // 分析数据是本地生成的，立即可用

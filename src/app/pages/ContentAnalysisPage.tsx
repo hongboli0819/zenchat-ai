@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useMemo, useEffect } from "react";
 import { SparklesIcon } from "@/shared/ui/Icon";
 import { LazyImage, preloadImage } from "@/shared/ui/LazyImage";
@@ -8,7 +10,7 @@ interface ContentAnalysisPageProps {
   onSelectPost: (post: XHSPost) => void;
 }
 
-export const ContentAnalysisPage: React.FC<ContentAnalysisPageProps> = ({ onBack, onSelectPost }) => {
+export default function ContentAnalysisPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const pageSize = 20;

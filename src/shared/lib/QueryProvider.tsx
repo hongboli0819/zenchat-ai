@@ -1,3 +1,5 @@
+'use client'
+
 /**
  * TanStack Query Provider
  * 
@@ -43,7 +45,7 @@ export function QueryProvider({ children }: QueryProviderProps) {
   // 开发环境下按 Ctrl+Shift+D 切换 DevTools
   useEffect(() => {
     // 仅在开发环境注册快捷键
-    if (!import.meta.env.DEV) return;
+    if (process.env.NODE_ENV !== 'development') return;
     
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.ctrlKey && e.shiftKey && e.key === "D") {
@@ -59,7 +61,7 @@ export function QueryProvider({ children }: QueryProviderProps) {
     <QueryClientProvider client={queryClient}>
       <DataManager />
       {children}
-      {import.meta.env.DEV && showDevtools && (
+      {process.env.NODE_ENV === 'development' && showDevtools && (
         <ReactQueryDevtools initialIsOpen={false} position="bottom" />
       )}
     </QueryClientProvider>
@@ -68,4 +70,3 @@ export function QueryProvider({ children }: QueryProviderProps) {
 
 // 导出 queryClient 供手动操作
 export { queryClient };
-

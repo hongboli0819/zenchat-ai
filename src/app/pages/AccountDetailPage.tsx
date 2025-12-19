@@ -1,10 +1,12 @@
+'use client'
+
 import React, { useState, useMemo, useCallback } from "react";
-import { useParams, useNavigate, useOutletContext } from "react-router-dom";
+import { useParams, useRouter } from "next/navigation";
 import { SparklesIcon } from "@/shared/ui/Icon";
 import { useAccount, usePostsByAccount } from "@/shared/lib/queries";
 import { TimeRangeSelector } from "./dashboard/TimeRangeSelector";
 import { TimeRange, DateRange } from "./dashboard/types";
-import type { XHSPostForAnalysis } from "@/app/AppShell";
+import type { XHSPostForAnalysis } from "@/components/AppShell";
 import {
   startOfWeek,
   startOfMonth,
@@ -16,15 +18,15 @@ import {
 type SortOrder = "desc" | "asc";
 
 interface AccountDetailContextType {
-  setActiveModule: React.Dispatch<React.SetStateAction<string | null>>;
-  setSelectedPostForAnalysis: React.Dispatch<React.SetStateAction<XHSPostForAnalysis | null>>;
-  setAnalysisBackPath: React.Dispatch<React.SetStateAction<string | null>>;
+  setActiveModule?: React.Dispatch<React.SetStateAction<string | null>>;
+  setSelectedPostForAnalysis?: React.Dispatch<React.SetStateAction<XHSPostForAnalysis | null>>;
+  setAnalysisBackPath?: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-export const AccountDetailPage: React.FC = () => {
-  const { accountId } = useParams<{ accountId: string }>();
-  const navigate = useNavigate();
-  const { setActiveModule, setSelectedPostForAnalysis, setAnalysisBackPath } = useOutletContext<AccountDetailContextType>();
+export default function AccountDetailPage() {
+  const params = useParams();
+  const accountId = params.accountId as string;
+  const router = useRouter();
 
   // 筛选状态
   const [timeRange, setTimeRange] = useState<TimeRange>("all");

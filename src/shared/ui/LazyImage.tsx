@@ -1,3 +1,5 @@
+'use client'
+
 /**
  * LazyImage - 带骨架屏和加载状态的图片组件
  * 
