@@ -15,15 +15,17 @@ import { TaskList } from "./materials/TaskList";
 import { TaskDetail } from "./materials/TaskDetail";
 import { FilePreviewModal } from "./materials/FilePreviewModal";
 import { UploadZipDialog } from "./materials/UploadZipDialog";
+// ✅ Server Actions - 在服务端执行
 import {
   createTask,
-  processZipFile,
   deleteTask,
   deleteFailedTasks,
   markStuckTasksAsFailed,
   extractImageNamesFromTasks,
   cleanupDuplicateTasks,
-} from "@/core/services/materialService";
+} from "@/actions/material";
+// ✅ Client-side utilities - 在浏览器中执行（需要 DOM/Canvas）
+import { processZipFile } from "@/shared/lib/material-client";
 import { taskQueue, useTaskQueue } from "@/core/services/taskQueue";
 import { useTasks, invalidateAllData } from "@/shared/lib/queries";
 import type { FileTreeNode } from "@/core/types/database";

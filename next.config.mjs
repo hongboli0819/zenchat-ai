@@ -1,10 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // ⚠️ 生产环境应该修复这些错误后移除以下配置
+  // TODO: 修复所有 TypeScript 和 ESLint 错误
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: true, // ⚠️ 临时忽略，应该修复
   },
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: true, // ⚠️ 临时忽略，应该修复
   },
   images: {
     remotePatterns: [
